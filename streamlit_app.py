@@ -68,7 +68,7 @@ streamlit.header("Fruityvice Fruit Advice!")
 #my_cur.execute("insert into fruit_load_list values('from streamlit')")
 
 def get_fruityvice_data(this_fruit_choice):
-    fruitvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    fruitvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
     fruitvice_normalized = pandas.json_normalize(fruityvice_respons.json())
     return fruitvice_normalized
   
