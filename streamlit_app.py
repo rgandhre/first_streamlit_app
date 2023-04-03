@@ -60,8 +60,8 @@ streamlit.dataframe(my_data_row)
 
 #New section to add Text Entry Box
 fruit_choice = streamlit.text_input('What fruit would you like to add?')
-streamlit.write('The user entered', fruit_choice)
+#streamlit.write('The user entered', fruit_choice)
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-streamlit.text("Thanks for adding" + fruit_choice)
+streamlit.text("Thanks for adding " + fruit_choice)
 
 
