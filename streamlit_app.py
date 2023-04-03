@@ -37,33 +37,54 @@ streamlit.header("Fruityvice Fruit Advice!")
 
 
 #New section to add Text Entry Box
-fruit_choice = streamlit.text_input('What fruit would you like information about?', 'Kiwi')
-streamlit.write('The user entered', fruit_choice)
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+#fruit_choice = streamlit.text_input('What fruit would you like information about?', 'Kiwi')
+#streamlit.write('The user entered', fruit_choice)
+#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 
 #take the json version of the response and normalize it
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+#fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 
 #output it to the screen as table
-streamlit.dataframe(fruityvice_normalized)
+#streamlit.dataframe(fruityvice_normalized)
 
-streamlit.stop()
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
+#streamlit.stop()
+#my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+#my_cur = my_cnx.cursor()
 #my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 #my_data_row = my_cur.fetchone()
 #streamlit.text("Hello from Snowflake:")
 #streamlit.text(my_data_row)
-my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_row = my_cur.fetchall()
-streamlit.header("The fruit load list contains:")
-streamlit.dataframe(my_data_row)
+#my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
+#my_data_row = my_cur.fetchall()
+#streamlit.header("The fruit load list contains:")
+#streamlit.dataframe(my_data_row)
 
 #New section to add Text Entry Box
-fruit_choice = streamlit.text_input('What fruit would you like to add?')
+#fruit_choice = streamlit.text_input('What fruit would you like to add?')
 #streamlit.write('The user entered', fruit_choice)
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-streamlit.write("Thanks for adding " + fruit_choice)
+#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+#streamlit.write("Thanks for adding " + fruit_choice)
 
-my_cur.execute("insert into fruit_load_list values('from streamlit')")
+#my_cur.execute("insert into fruit_load_list values('from streamlit')")
+
+try:
+  fruit_choice = streamlit.text_input('What fruid would you like information about?')
+  if not fruit_choice:
+      streamlit.error("Please select a fruit to get information")
+  else:
+    fruitvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    fruitvice_normalized = pandas.json_normalize(fruityvice_respons.json())
+    streamlit.dataframe(fruityvice_normalized)
+
+except URLError as e:
+  streamlit.error()
+
+
+
+
+
+
+
+
+
 
